@@ -107,6 +107,33 @@ module.exports = {
                 statusCode: 200,
             }
         }
+    },
+    readShoe: async (userId, shoeId) => {
+        const SHOE = Shoe.findById(shoeId);
+        if (!SHOE) {
+            return {
+                message: "shoe is not exist",
+                data: null,
+                statusCode: 400,
+            }
+        }
+        else {
+            const CART = Cart.findOne({ userId: userId, shoeId: shoeId });
+            if (!CART) {
+                return {
+                    message: "shoe is not in cart",
+                    data: null,
+                    statusCode: 400,
+                }
+            }
+            else {
+                return {
+                    message: "",
+                    data: SHOE,
+                    statusCode: 200,
+                }
+            }
+        }
     }
 }
 

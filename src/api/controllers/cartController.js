@@ -27,5 +27,11 @@ module.exports = {
         const { userId } = req.user;
         const response = await cartService.readCart(userId);
         res.status(response.statusCode).json(response);
+    },
+    readShoe: async (req, res, next) => {
+        const { userId } = req.user;
+        const shoeId = req.body.shoeId;
+        const response = await cartService.readShoe(userId, shoeId);
+        res.status(response.statusCode).json(response);
     }
 }

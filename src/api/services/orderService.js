@@ -85,5 +85,32 @@ module.exports = {
             }
         }
 
+    },
+    readShoe: async (userId, shoeId) => {
+        const checkShoe = Shoe.findById(shoeId);
+        if (!checkShoe) {
+            return {
+                message: "shoe is not exist",
+                statusCode: 400,
+                data: null,
+            }
+        }
+        else {
+            const checkOrder = Order.findOne({ userId: userId, shoeId: shoeId });
+            if (!checkOrder) {
+                return {
+                    message: "shoe is not exist in order",
+                    statusCode: 400,
+                    data: null,
+                }
+            }
+            else {
+                return {
+                    message: "",
+                    data: checkShoe,
+                    statusCode: 200,
+                }
+            }
+        }
     }
 };

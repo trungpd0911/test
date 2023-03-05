@@ -19,5 +19,11 @@ module.exports = {
         const Count = req.body.count;
         const response = await orderService.removeFromCart(userId, shoeId, Count);;
         res.status(response.statusCode).json(response);
+    },
+    readShoe: async (req, res, next) => {
+        const { userId } = req.user;
+        const shoeId = req.body.shoeId;
+        const response = await orderService.readShoe(userId, shoeId);
+        res.status(response.statusCode).json(response);
     }
 };
