@@ -1,5 +1,4 @@
 const Shoe = require("../models/shoe");
-const { mongooseToObj } = require("../services/mongoose");
 const { multipleMongooseToObj } = require("../services/mongoose");
 class ShoeController {
   //[CREATE] shoes/create
@@ -28,7 +27,6 @@ class ShoeController {
     })
     .catch(err=>res.status(404).json('Not Found'));
   }
-  // [PUT] shoes/:id
   update(req, res, next) {
     if (!req.file) {
       next(new Error("No file uploaded!"));
